@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 from datetime import datetime
 
 class Delivery(BaseModel):
@@ -22,9 +22,15 @@ class OrderedDeliveryList(BaseModel):
 class BusinessData(BaseModel):
     last_month_revenue: str = Field(..., description="Progress on last month revenue")
 
+
+
 class ConsultationOutput(BaseModel):
-    summary_report: str = Field(..., description="Summary of the consultation's report content")
-    recommendations: List[str] = Field(..., description="List of TODO recommendation")
+    summary_report: str = Field(..., description="Plain‑English business insights")
+    recommendations: List[str] = Field(..., description="Bullet‑point TODO list for the merchant")
+    email_template: str = Field(
+        ...,
+        description="Pre‑composed email the agent can send to the merchant"
+    )
 
 class Recommendation(BaseModel):
     pass
